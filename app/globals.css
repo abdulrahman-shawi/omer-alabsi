@@ -1,0 +1,78 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #020617;
+  --foreground: #f1f5f9;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  color: var(--foreground);
+  background-color: var(--background);
+  font-family: var(--font-plex), system-ui, sans-serif;
+}
+
+::selection {
+  background-color: #0ea5e9;
+  color: #020617;
+}
+
+/* شريط التمرير */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #0f172a;
+}
+::-webkit-scrollbar-thumb {
+  background: #334155;
+  border-radius: 8px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #0ea5e9;
+}
+
+/* نمط الأرقام والنصوص اللاتينية */
+.latin {
+  font-family: var(--font-inter), sans-serif;
+  direction: ltr;
+  display: inline-block;
+}
+
+/* حركات الظهور عند التمرير */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.reveal {
+  opacity: 0;
+}
+
+.reveal.visible {
+  animation: fadeInUp 0.7s ease-out forwards;
+}
+
+/* توهج خفيف للعناوين */
+.text-glow {
+  text-shadow: 0 0 30px rgba(14, 165, 233, 0.35);
+}
+
+/* شبكة خلفية هندسية خفيفة */
+.bg-grid {
+  background-image:
+    linear-gradient(rgba(148, 163, 184, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 163, 184, 0.05) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
