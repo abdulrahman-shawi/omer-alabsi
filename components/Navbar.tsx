@@ -8,6 +8,7 @@ const links = [
   { href: "#education", label: "المؤهلات" },
   { href: "#experience", label: "الخبرة" },
   { href: "#teaching", label: "مجالات التدريس" },
+  { href: "#gallery", label: "الأنشطة" },
   { href: "#skills", label: "المهارات" },
   { href: "#contact", label: "تواصل" },
 ];

@@ -5,6 +5,7 @@ import Education from "@/components/Education";
 import Experience from "@/components/Experience";
 import Teaching from "@/components/Teaching";
 import Certifications from "@/components/Certifications";
+import Gallery from "@/components/Gallery";
 import Skills from "@/components/Skills";
 import Objective from "@/components/Objective";
 import Contact from "@/components/Contact";
@@ -20,6 +21,7 @@ export default function Home() {
         <Experience />
         <Teaching />
         <Certifications />
+        <Gallery />
         <Skills />
         <Objective />
         <Contact />
