@@ -9,7 +9,11 @@
 * 🟢 You can import this file directly.
 */
 
+export const AccentColor = {
+  sky: 'sky',
+  indigo: 'indigo',
+  emerald: 'emerald',
+  amber: 'amber'
+} as const
 
-
-// This file is empty because there are no enums in the schema.
-export {}
+export type AccentColor = (typeof AccentColor)[keyof typeof AccentColor]

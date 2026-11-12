@@ -51,7 +51,40 @@ export const AnyNull = runtime.AnyNull
 
 
 export const ModelName = {
-
+  SiteSettings: 'SiteSettings',
+  NavLink: 'NavLink',
+  Hero: 'Hero',
+  HeroSpecialty: 'HeroSpecialty',
+  HeroButton: 'HeroButton',
+  About: 'About',
+  AboutParagraph: 'AboutParagraph',
+  AboutStat: 'AboutStat',
+  EducationSection: 'EducationSection',
+  EducationDegree: 'EducationDegree',
+  EducationHighlight: 'EducationHighlight',
+  ExperienceSection: 'ExperienceSection',
+  ExperienceTraining: 'ExperienceTraining',
+  ExperienceOrganization: 'ExperienceOrganization',
+  TeachingSection: 'TeachingSection',
+  TeachingDomain: 'TeachingDomain',
+  TeachingCourse: 'TeachingCourse',
+  CertificationsSection: 'CertificationsSection',
+  CertStandard: 'CertStandard',
+  CertGroup: 'CertGroup',
+  CertItem: 'CertItem',
+  DevelopmentProgram: 'DevelopmentProgram',
+  GallerySection: 'GallerySection',
+  GalleryPhoto: 'GalleryPhoto',
+  ActivitiesSection: 'ActivitiesSection',
+  ActivityItem: 'ActivityItem',
+  SkillsSection: 'SkillsSection',
+  SkillGroup: 'SkillGroup',
+  SkillItem: 'SkillItem',
+  Language: 'Language',
+  ObjectiveSection: 'ObjectiveSection',
+  ResearchInterest: 'ResearchInterest',
+  ContactSection: 'ContactSection',
+  ContactCard: 'ContactCard'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -68,4 +101,427 @@ export const TransactionIsolationLevel = runtime.makeStrictEnum({
 } as const)
 
 export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
+
+
+export const SiteSettingsScalarFieldEnum = {
+  id: 'id',
+  navbarBrand: 'navbarBrand',
+  footerText: 'footerText',
+  updatedAt: 'updatedAt'
+} as const
+
+export type SiteSettingsScalarFieldEnum = (typeof SiteSettingsScalarFieldEnum)[keyof typeof SiteSettingsScalarFieldEnum]
+
+
+export const NavLinkScalarFieldEnum = {
+  id: 'id',
+  label: 'label',
+  href: 'href',
+  order: 'order',
+  visible: 'visible'
+} as const
+
+export type NavLinkScalarFieldEnum = (typeof NavLinkScalarFieldEnum)[keyof typeof NavLinkScalarFieldEnum]
+
+
+export const HeroScalarFieldEnum = {
+  id: 'id',
+  greeting: 'greeting',
+  name: 'name',
+  title: 'title',
+  qualifications: 'qualifications',
+  avatarLetter: 'avatarLetter',
+  bgImage: 'bgImage',
+  visible: 'visible',
+  updatedAt: 'updatedAt'
+} as const
+
+export type HeroScalarFieldEnum = (typeof HeroScalarFieldEnum)[keyof typeof HeroScalarFieldEnum]
+
+
+export const HeroSpecialtyScalarFieldEnum = {
+  id: 'id',
+  heroId: 'heroId',
+  label: 'label',
+  order: 'order'
+} as const
+
+export type HeroSpecialtyScalarFieldEnum = (typeof HeroSpecialtyScalarFieldEnum)[keyof typeof HeroSpecialtyScalarFieldEnum]
+
+
+export const HeroButtonScalarFieldEnum = {
+  id: 'id',
+  heroId: 'heroId',
+  label: 'label',
+  href: 'href',
+  style: 'style',
+  order: 'order'
+} as const
+
+export type HeroButtonScalarFieldEnum = (typeof HeroButtonScalarFieldEnum)[keyof typeof HeroButtonScalarFieldEnum]
+
+
+export const AboutScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  subtitle: 'subtitle',
+  visible: 'visible',
+  updatedAt: 'updatedAt'
+} as const
+
+export type AboutScalarFieldEnum = (typeof AboutScalarFieldEnum)[keyof typeof AboutScalarFieldEnum]
+
+
+export const AboutParagraphScalarFieldEnum = {
+  id: 'id',
+  aboutId: 'aboutId',
+  text: 'text',
+  order: 'order'
+} as const
+
+export type AboutParagraphScalarFieldEnum = (typeof AboutParagraphScalarFieldEnum)[keyof typeof AboutParagraphScalarFieldEnum]
+
+
+export const AboutStatScalarFieldEnum = {
+  id: 'id',
+  aboutId: 'aboutId',
+  value: 'value',
+  label: 'label',
+  order: 'order'
+} as const
+
+export type AboutStatScalarFieldEnum = (typeof AboutStatScalarFieldEnum)[keyof typeof AboutStatScalarFieldEnum]
+
+
+export const EducationSectionScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  subtitle: 'subtitle',
+  visible: 'visible',
+  updatedAt: 'updatedAt'
+} as const
+
+export type EducationSectionScalarFieldEnum = (typeof EducationSectionScalarFieldEnum)[keyof typeof EducationSectionScalarFieldEnum]
+
+
+export const EducationDegreeScalarFieldEnum = {
+  id: 'id',
+  sectionId: 'sectionId',
+  title: 'title',
+  status: 'status',
+  university: 'university',
+  year: 'year',
+  description: 'description',
+  order: 'order'
+} as const
+
+export type EducationDegreeScalarFieldEnum = (typeof EducationDegreeScalarFieldEnum)[keyof typeof EducationDegreeScalarFieldEnum]
+
+
+export const EducationHighlightScalarFieldEnum = {
+  id: 'id',
+  degreeId: 'degreeId',
+  text: 'text',
+  order: 'order'
+} as const
+
+export type EducationHighlightScalarFieldEnum = (typeof EducationHighlightScalarFieldEnum)[keyof typeof EducationHighlightScalarFieldEnum]
+
+
+export const ExperienceSectionScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  subtitle: 'subtitle',
+  bgImage: 'bgImage',
+  academicRole: 'academicRole',
+  academicField: 'academicField',
+  academicPlace: 'academicPlace',
+  academicDescription: 'academicDescription',
+  academicNote: 'academicNote',
+  visible: 'visible',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ExperienceSectionScalarFieldEnum = (typeof ExperienceSectionScalarFieldEnum)[keyof typeof ExperienceSectionScalarFieldEnum]
+
+
+export const ExperienceTrainingScalarFieldEnum = {
+  id: 'id',
+  sectionId: 'sectionId',
+  role: 'role',
+  place: 'place',
+  description: 'description',
+  order: 'order'
+} as const
+
+export type ExperienceTrainingScalarFieldEnum = (typeof ExperienceTrainingScalarFieldEnum)[keyof typeof ExperienceTrainingScalarFieldEnum]
+
+
+export const ExperienceOrganizationScalarFieldEnum = {
+  id: 'id',
+  sectionId: 'sectionId',
+  abbr: 'abbr',
+  name: 'name',
+  order: 'order'
+} as const
+
+export type ExperienceOrganizationScalarFieldEnum = (typeof ExperienceOrganizationScalarFieldEnum)[keyof typeof ExperienceOrganizationScalarFieldEnum]
+
+
+export const TeachingSectionScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  subtitle: 'subtitle',
+  visible: 'visible',
+  updatedAt: 'updatedAt'
+} as const
+
+export type TeachingSectionScalarFieldEnum = (typeof TeachingSectionScalarFieldEnum)[keyof typeof TeachingSectionScalarFieldEnum]
+
+
+export const TeachingDomainScalarFieldEnum = {
+  id: 'id',
+  sectionId: 'sectionId',
+  title: 'title',
+  description: 'description',
+  color: 'color',
+  icon: 'icon',
+  order: 'order'
+} as const
+
+export type TeachingDomainScalarFieldEnum = (typeof TeachingDomainScalarFieldEnum)[keyof typeof TeachingDomainScalarFieldEnum]
+
+
+export const TeachingCourseScalarFieldEnum = {
+  id: 'id',
+  domainId: 'domainId',
+  name: 'name',
+  order: 'order'
+} as const
+
+export type TeachingCourseScalarFieldEnum = (typeof TeachingCourseScalarFieldEnum)[keyof typeof TeachingCourseScalarFieldEnum]
+
+
+export const CertificationsSectionScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  subtitle: 'subtitle',
+  standardsTitle: 'standardsTitle',
+  standardsIntro: 'standardsIntro',
+  certGroupsTitle: 'certGroupsTitle',
+  programsTitle: 'programsTitle',
+  programsIntro: 'programsIntro',
+  visible: 'visible',
+  updatedAt: 'updatedAt'
+} as const
+
+export type CertificationsSectionScalarFieldEnum = (typeof CertificationsSectionScalarFieldEnum)[keyof typeof CertificationsSectionScalarFieldEnum]
+
+
+export const CertStandardScalarFieldEnum = {
+  id: 'id',
+  sectionId: 'sectionId',
+  code: 'code',
+  name: 'name',
+  order: 'order'
+} as const
+
+export type CertStandardScalarFieldEnum = (typeof CertStandardScalarFieldEnum)[keyof typeof CertStandardScalarFieldEnum]
+
+
+export const CertGroupScalarFieldEnum = {
+  id: 'id',
+  sectionId: 'sectionId',
+  field: 'field',
+  order: 'order'
+} as const
+
+export type CertGroupScalarFieldEnum = (typeof CertGroupScalarFieldEnum)[keyof typeof CertGroupScalarFieldEnum]
+
+
+export const CertItemScalarFieldEnum = {
+  id: 'id',
+  groupId: 'groupId',
+  text: 'text',
+  order: 'order'
+} as const
+
+export type CertItemScalarFieldEnum = (typeof CertItemScalarFieldEnum)[keyof typeof CertItemScalarFieldEnum]
+
+
+export const DevelopmentProgramScalarFieldEnum = {
+  id: 'id',
+  sectionId: 'sectionId',
+  name: 'name',
+  order: 'order'
+} as const
+
+export type DevelopmentProgramScalarFieldEnum = (typeof DevelopmentProgramScalarFieldEnum)[keyof typeof DevelopmentProgramScalarFieldEnum]
+
+
+export const GallerySectionScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  subtitle: 'subtitle',
+  note: 'note',
+  visible: 'visible',
+  updatedAt: 'updatedAt'
+} as const
+
+export type GallerySectionScalarFieldEnum = (typeof GallerySectionScalarFieldEnum)[keyof typeof GallerySectionScalarFieldEnum]
+
+
+export const GalleryPhotoScalarFieldEnum = {
+  id: 'id',
+  sectionId: 'sectionId',
+  src: 'src',
+  title: 'title',
+  category: 'category',
+  order: 'order'
+} as const
+
+export type GalleryPhotoScalarFieldEnum = (typeof GalleryPhotoScalarFieldEnum)[keyof typeof GalleryPhotoScalarFieldEnum]
+
+
+export const ActivitiesSectionScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  subtitle: 'subtitle',
+  visible: 'visible',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ActivitiesSectionScalarFieldEnum = (typeof ActivitiesSectionScalarFieldEnum)[keyof typeof ActivitiesSectionScalarFieldEnum]
+
+
+export const ActivityItemScalarFieldEnum = {
+  id: 'id',
+  sectionId: 'sectionId',
+  title: 'title',
+  description: 'description',
+  icon: 'icon',
+  order: 'order'
+} as const
+
+export type ActivityItemScalarFieldEnum = (typeof ActivityItemScalarFieldEnum)[keyof typeof ActivityItemScalarFieldEnum]
+
+
+export const SkillsSectionScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  subtitle: 'subtitle',
+  languagesTitle: 'languagesTitle',
+  visible: 'visible',
+  updatedAt: 'updatedAt'
+} as const
+
+export type SkillsSectionScalarFieldEnum = (typeof SkillsSectionScalarFieldEnum)[keyof typeof SkillsSectionScalarFieldEnum]
+
+
+export const SkillGroupScalarFieldEnum = {
+  id: 'id',
+  sectionId: 'sectionId',
+  title: 'title',
+  color: 'color',
+  order: 'order'
+} as const
+
+export type SkillGroupScalarFieldEnum = (typeof SkillGroupScalarFieldEnum)[keyof typeof SkillGroupScalarFieldEnum]
+
+
+export const SkillItemScalarFieldEnum = {
+  id: 'id',
+  groupId: 'groupId',
+  name: 'name',
+  order: 'order'
+} as const
+
+export type SkillItemScalarFieldEnum = (typeof SkillItemScalarFieldEnum)[keyof typeof SkillItemScalarFieldEnum]
+
+
+export const LanguageScalarFieldEnum = {
+  id: 'id',
+  sectionId: 'sectionId',
+  name: 'name',
+  code: 'code',
+  level: 'level',
+  percent: 'percent',
+  order: 'order'
+} as const
+
+export type LanguageScalarFieldEnum = (typeof LanguageScalarFieldEnum)[keyof typeof LanguageScalarFieldEnum]
+
+
+export const ObjectiveSectionScalarFieldEnum = {
+  id: 'id',
+  heading: 'heading',
+  paragraph1: 'paragraph1',
+  paragraph2: 'paragraph2',
+  interestsTitle: 'interestsTitle',
+  visible: 'visible',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ObjectiveSectionScalarFieldEnum = (typeof ObjectiveSectionScalarFieldEnum)[keyof typeof ObjectiveSectionScalarFieldEnum]
+
+
+export const ResearchInterestScalarFieldEnum = {
+  id: 'id',
+  sectionId: 'sectionId',
+  name: 'name',
+  order: 'order'
+} as const
+
+export type ResearchInterestScalarFieldEnum = (typeof ResearchInterestScalarFieldEnum)[keyof typeof ResearchInterestScalarFieldEnum]
+
+
+export const ContactSectionScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  subtitle: 'subtitle',
+  bgImage: 'bgImage',
+  metaLine: 'metaLine',
+  visible: 'visible',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ContactSectionScalarFieldEnum = (typeof ContactSectionScalarFieldEnum)[keyof typeof ContactSectionScalarFieldEnum]
+
+
+export const ContactCardScalarFieldEnum = {
+  id: 'id',
+  sectionId: 'sectionId',
+  title: 'title',
+  value: 'value',
+  href: 'href',
+  action: 'action',
+  icon: 'icon',
+  order: 'order'
+} as const
+
+export type ContactCardScalarFieldEnum = (typeof ContactCardScalarFieldEnum)[keyof typeof ContactCardScalarFieldEnum]
+
+
+export const SortOrder = {
+  asc: 'asc',
+  desc: 'desc'
+} as const
+
+export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
+
+
+export const QueryMode = {
+  default: 'default',
+  insensitive: 'insensitive'
+} as const
+
+export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
+
+
+export const NullsOrder = {
+  first: 'first',
+  last: 'last'
+} as const
+
+export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 

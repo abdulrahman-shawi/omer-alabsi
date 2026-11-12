@@ -31,8 +31,8 @@ export * from "./enums"
  * const prisma = new PrismaClient({
  *   adapter: new PrismaPg({ connectionString: process.env.DATABASE_URL })
  * })
- * // Fetch zero or more Users
- * const users = await prisma.user.findMany()
+ * // Fetch zero or more SiteSettings
+ * const siteSettings = await prisma.siteSettings.findMany()
  * ```
  * 
  * Read more in our [docs](https://pris.ly/d/client).
@@ -41,4 +41,173 @@ export const PrismaClient = $Class.getPrismaClientClass()
 export type PrismaClient<LogOpts extends Prisma.LogLevel = never, OmitOpts extends Prisma.PrismaClientOptions["omit"] = Prisma.PrismaClientOptions["omit"], ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = $Class.PrismaClient<LogOpts, OmitOpts, ExtArgs>
 export { Prisma }
 
-
+/**
+ * Model SiteSettings
+ * 
+ */
+export type SiteSettings = Prisma.SiteSettingsModel
+/**
+ * Model NavLink
+ * 
+ */
+export type NavLink = Prisma.NavLinkModel
+/**
+ * Model Hero
+ * 
+ */
+export type Hero = Prisma.HeroModel
+/**
+ * Model HeroSpecialty
+ * 
+ */
+export type HeroSpecialty = Prisma.HeroSpecialtyModel
+/**
+ * Model HeroButton
+ * 
+ */
+export type HeroButton = Prisma.HeroButtonModel
+/**
+ * Model About
+ * 
+ */
+export type About = Prisma.AboutModel
+/**
+ * Model AboutParagraph
+ * 
+ */
+export type AboutParagraph = Prisma.AboutParagraphModel
+/**
+ * Model AboutStat
+ * 
+ */
+export type AboutStat = Prisma.AboutStatModel
+/**
+ * Model EducationSection
+ * 
+ */
+export type EducationSection = Prisma.EducationSectionModel
+/**
+ * Model EducationDegree
+ * 
+ */
+export type EducationDegree = Prisma.EducationDegreeModel
+/**
+ * Model EducationHighlight
+ * 
+ */
+export type EducationHighlight = Prisma.EducationHighlightModel
+/**
+ * Model ExperienceSection
+ * 
+ */
+export type ExperienceSection = Prisma.ExperienceSectionModel
+/**
+ * Model ExperienceTraining
+ * 
+ */
+export type ExperienceTraining = Prisma.ExperienceTrainingModel
+/**
+ * Model ExperienceOrganization
+ * 
+ */
+export type ExperienceOrganization = Prisma.ExperienceOrganizationModel
+/**
+ * Model TeachingSection
+ * 
+ */
+export type TeachingSection = Prisma.TeachingSectionModel
+/**
+ * Model TeachingDomain
+ * 
+ */
+export type TeachingDomain = Prisma.TeachingDomainModel
+/**
+ * Model TeachingCourse
+ * 
+ */
+export type TeachingCourse = Prisma.TeachingCourseModel
+/**
+ * Model CertificationsSection
+ * 
+ */
+export type CertificationsSection = Prisma.CertificationsSectionModel
+/**
+ * Model CertStandard
+ * 
+ */
+export type CertStandard = Prisma.CertStandardModel
+/**
+ * Model CertGroup
+ * 
+ */
+export type CertGroup = Prisma.CertGroupModel
+/**
+ * Model CertItem
+ * 
+ */
+export type CertItem = Prisma.CertItemModel
+/**
+ * Model DevelopmentProgram
+ * 
+ */
+export type DevelopmentProgram = Prisma.DevelopmentProgramModel
+/**
+ * Model GallerySection
+ * 
+ */
+export type GallerySection = Prisma.GallerySectionModel
+/**
+ * Model GalleryPhoto
+ * 
+ */
+export type GalleryPhoto = Prisma.GalleryPhotoModel
+/**
+ * Model ActivitiesSection
+ * 
+ */
+export type ActivitiesSection = Prisma.ActivitiesSectionModel
+/**
+ * Model ActivityItem
+ * 
+ */
+export type ActivityItem = Prisma.ActivityItemModel
+/**
+ * Model SkillsSection
+ * 
+ */
+export type SkillsSection = Prisma.SkillsSectionModel
+/**
+ * Model SkillGroup
+ * 
+ */
+export type SkillGroup = Prisma.SkillGroupModel
+/**
+ * Model SkillItem
+ * 
+ */
+export type SkillItem = Prisma.SkillItemModel
+/**
+ * Model Language
+ * 
+ */
+export type Language = Prisma.LanguageModel
+/**
+ * Model ObjectiveSection
+ * 
+ */
+export type ObjectiveSection = Prisma.ObjectiveSectionModel
+/**
+ * Model ResearchInterest
+ * 
+ */
+export type ResearchInterest = Prisma.ResearchInterestModel
+/**
+ * Model ContactSection
+ * 
+ */
+export type ContactSection = Prisma.ContactSectionModel
+/**
+ * Model ContactCard
+ * 
+ */
+export type ContactCard = Prisma.ContactCardModel

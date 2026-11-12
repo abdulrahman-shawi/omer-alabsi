@@ -11,3 +11,412 @@ generator client {
 datasource db {
   provider = "postgresql"
 }
+
+// ─────────────────────────────────────────────
+// الإعدادات العامة للموقع والقائمة العلوية
+// ─────────────────────────────────────────────
+
+model SiteSettings {
+  id          Int      @id @default(1)
+  navbarBrand String // اسم العلامة في القائمة: عمر العبسي
+  footerText  String // نص سطر الفوتر
+  updatedAt   DateTime @updatedAt
+}
+
+model NavLink {
+  id      Int     @id @default(autoincrement())
+  label   String
+  href    String // مثال: #about
+  order   Int     @default(0)
+  visible Boolean @default(true)
+}
+
+// ─────────────────────────────────────────────
+// قسم الترحيب (Hero)
+// ─────────────────────────────────────────────
+
+model Hero {
+  id             Int      @id @default(1)
+  greeting       String // الترحيب: مرحباً، أنا
+  name           String // الاسم الكامل
+  title          String // المسمى (نص الآلة الكاتبة)
+  qualifications String // سطر المؤهلات أسفل المسمى
+  avatarLetter   String   @default("ع") // الحرف الظاهر في الصورة الرمزية
+  bgImage        String   @default("/hero-bg.jpg")
+  visible        Boolean  @default(true)
+  updatedAt      DateTime @updatedAt
+
+  specialties HeroSpecialty[]
+  buttons     HeroButton[]
+}
+
+model HeroSpecialty {
+  id     Int    @id @default(autoincrement())
+  heroId Int
+  hero   Hero   @relation(fields: [heroId], references: [id], onDelete: Cascade)
+  label  String
+  order  Int    @default(0)
+}
+
+model HeroButton {
+  id     Int    @id @default(autoincrement())
+  heroId Int
+  hero   Hero   @relation(fields: [heroId], references: [id], onDelete: Cascade)
+  label  String
+  href   String
+  style  String @default("primary") // primary | outline
+  order  Int    @default(0)
+}
+
+// ─────────────────────────────────────────────
+// قسم نبذة عني (About)
+// ─────────────────────────────────────────────
+
+model About {
+  id        Int      @id @default(1)
+  title     String
+  subtitle  String?
+  visible   Boolean  @default(true)
+  updatedAt DateTime @updatedAt
+
+  paragraphs AboutParagraph[]
+  stats      AboutStat[]
+}
+
+model AboutParagraph {
+  id      Int    @id @default(autoincrement())
+  aboutId Int
+  about   About  @relation(fields: [aboutId], references: [id], onDelete: Cascade)
+  text    String @db.Text
+  order   Int    @default(0)
+}
+
+model AboutStat {
+  id      Int    @id @default(autoincrement())
+  aboutId Int
+  about   About  @relation(fields: [aboutId], references: [id], onDelete: Cascade)
+  value   String // الرقم: 3
+  label   String // الوصف: مؤهلات علمية
+  order   Int    @default(0)
+}
+
+// ─────────────────────────────────────────────
+// قسم المؤهلات العلمية (Education)
+// ─────────────────────────────────────────────
+
+model EducationSection {
+  id        Int      @id @default(1)
+  title     String
+  subtitle  String?
+  visible   Boolean  @default(true)
+  updatedAt DateTime @updatedAt
+
+  degrees EducationDegree[]
+}
+
+model EducationDegree {
+  id          Int              @id @default(autoincrement())
+  sectionId   Int
+  section     EducationSection @relation(fields: [sectionId], references: [id], onDelete: Cascade)
+  title       String
+  status      String? // شارة الحالة: قيد الدراسة
+  university  String
+  year        String // سنة التخرج
+  description String           @db.Text
+  order       Int              @default(0)
+
+  highlights EducationHighlight[]
+}
+
+model EducationHighlight {
+  id       Int             @id @default(autoincrement())
+  degreeId Int
+  degree   EducationDegree @relation(fields: [degreeId], references: [id], onDelete: Cascade)
+  text     String
+  order    Int             @default(0)
+}
+
+// ─────────────────────────────────────────────
+// قسم الخبرة الأكاديمية والتدريبية (Experience)
+// ─────────────────────────────────────────────
+
+model ExperienceSection {
+  id                  Int      @id @default(1)
+  title               String
+  subtitle            String?
+  bgImage             String?
+  academicRole        String // المسمى: مدرس
+  academicField       String // المجال: التعليم والتدريب المخبري
+  academicPlace       String // المكان: جامعة حمص
+  academicDescription String   @db.Text
+  academicNote        String   @db.Text
+  visible             Boolean  @default(true)
+  updatedAt           DateTime @updatedAt
+
+  trainingItems ExperienceTraining[]
+  organizations ExperienceOrganization[]
+}
+
+model ExperienceTraining {
+  id          Int               @id @default(autoincrement())
+  sectionId   Int
+  section     ExperienceSection @relation(fields: [sectionId], references: [id], onDelete: Cascade)
+  role        String
+  place       String
+  description String            @db.Text
+  order       Int               @default(0)
+}
+
+model ExperienceOrganization {
+  id        Int               @id @default(autoincrement())
+  sectionId Int
+  section   ExperienceSection @relation(fields: [sectionId], references: [id], onDelete: Cascade)
+  abbr      String // الاختصار اللاتيني: IOM
+  name      String // الاسم الكامل بالعربية
+  order     Int               @default(0)
+}
+
+// ─────────────────────────────────────────────
+// قسم مجالات التدريس (Teaching)
+// ─────────────────────────────────────────────
+
+enum AccentColor {
+  sky
+  indigo
+  emerald
+  amber
+}
+
+model TeachingSection {
+  id        Int      @id @default(1)
+  title     String
+  subtitle  String?
+  visible   Boolean  @default(true)
+  updatedAt DateTime @updatedAt
+
+  domains TeachingDomain[]
+}
+
+model TeachingDomain {
+  id          Int             @id @default(autoincrement())
+  sectionId   Int
+  section     TeachingSection @relation(fields: [sectionId], references: [id], onDelete: Cascade)
+  title       String
+  description String
+  color       AccentColor     @default(sky)
+  icon        String          @db.Text // مسار SVG (خاصية d)
+  order       Int             @default(0)
+
+  courses TeachingCourse[]
+}
+
+model TeachingCourse {
+  id       Int            @id @default(autoincrement())
+  domainId Int
+  domain   TeachingDomain @relation(fields: [domainId], references: [id], onDelete: Cascade)
+  name     String
+  order    Int            @default(0)
+}
+
+// ─────────────────────────────────────────────
+// قسم الشهادات والمعايير الدولية (Certifications)
+// ─────────────────────────────────────────────
+
+model CertificationsSection {
+  id              Int      @id @default(1)
+  title           String
+  subtitle        String?
+  standardsTitle  String // عنوان بلوك معايير الجودة
+  standardsIntro  String   @db.Text // الوصف أسفل العنوان
+  certGroupsTitle String // عنوان بلوك الشهادات المهنية
+  programsTitle   String // عنوان بلوك برامج التنمية
+  programsIntro   String   @db.Text
+  visible         Boolean  @default(true)
+  updatedAt       DateTime @updatedAt
+
+  standards  CertStandard[]
+  certGroups CertGroup[]
+  programs   DevelopmentProgram[]
+}
+
+model CertStandard {
+  id        Int                   @id @default(autoincrement())
+  sectionId Int
+  section   CertificationsSection @relation(fields: [sectionId], references: [id], onDelete: Cascade)
+  code      String // مثال: ISO 9001:2015
+  name      String
+  order     Int                   @default(0)
+}
+
+model CertGroup {
+  id        Int                   @id @default(autoincrement())
+  sectionId Int
+  section   CertificationsSection @relation(fields: [sectionId], references: [id], onDelete: Cascade)
+  field     String // المجال: إدارة المشاريع
+  order     Int                   @default(0)
+
+  items CertItem[]
+}
+
+model CertItem {
+  id      Int       @id @default(autoincrement())
+  groupId Int
+  group   CertGroup @relation(fields: [groupId], references: [id], onDelete: Cascade)
+  text    String
+  order   Int       @default(0)
+}
+
+model DevelopmentProgram {
+  id        Int                   @id @default(autoincrement())
+  sectionId Int
+  section   CertificationsSection @relation(fields: [sectionId], references: [id], onDelete: Cascade)
+  name      String
+  order     Int                   @default(0)
+}
+
+// ─────────────────────────────────────────────
+// قسم معرض الصور (Gallery)
+// ─────────────────────────────────────────────
+
+model GallerySection {
+  id        Int      @id @default(1)
+  title     String
+  subtitle  String?
+  note      String   @default("* صور توضيحية — يمكن استبدالها بالصور الحقيقية من الأنشطة")
+  visible   Boolean  @default(true)
+  updatedAt DateTime @updatedAt
+
+  photos GalleryPhoto[]
+}
+
+model GalleryPhoto {
+  id        Int            @id @default(autoincrement())
+  sectionId Int
+  section   GallerySection @relation(fields: [sectionId], references: [id], onDelete: Cascade)
+  src       String // مسار محلي أو رابط خارجي
+  title     String
+  category  String?
+  order     Int            @default(0)
+}
+
+// ─────────────────────────────────────────────
+// قسم الأنشطة المجتمعية (Activities)
+// ─────────────────────────────────────────────
+
+model ActivitiesSection {
+  id        Int      @id @default(1)
+  title     String
+  subtitle  String?
+  visible   Boolean  @default(true)
+  updatedAt DateTime @updatedAt
+
+  items ActivityItem[]
+}
+
+model ActivityItem {
+  id          Int               @id @default(autoincrement())
+  sectionId   Int
+  section     ActivitiesSection @relation(fields: [sectionId], references: [id], onDelete: Cascade)
+  title       String
+  description String            @db.Text
+  icon        String            @db.Text // مسار SVG (خاصية d)
+  order       Int               @default(0)
+}
+
+// ─────────────────────────────────────────────
+// قسم المهارات واللغات (Skills)
+// ─────────────────────────────────────────────
+
+model SkillsSection {
+  id             Int      @id @default(1)
+  title          String
+  subtitle       String?
+  languagesTitle String   @default("اللغات")
+  visible        Boolean  @default(true)
+  updatedAt      DateTime @updatedAt
+
+  groups    SkillGroup[]
+  languages Language[]
+}
+
+model SkillGroup {
+  id        Int           @id @default(autoincrement())
+  sectionId Int
+  section   SkillsSection @relation(fields: [sectionId], references: [id], onDelete: Cascade)
+  title     String
+  color     AccentColor   @default(sky)
+  order     Int           @default(0)
+
+  skills SkillItem[]
+}
+
+model SkillItem {
+  id      Int        @id @default(autoincrement())
+  groupId Int
+  group   SkillGroup @relation(fields: [groupId], references: [id], onDelete: Cascade)
+  name    String
+  order   Int        @default(0)
+}
+
+model Language {
+  id        Int           @id @default(autoincrement())
+  sectionId Int
+  section   SkillsSection @relation(fields: [sectionId], references: [id], onDelete: Cascade)
+  name      String
+  code      String? // مثال: C1, B1
+  level     String // ممتاز، متوسط...
+  percent   Int           @default(0)
+  order     Int           @default(0)
+}
+
+// ─────────────────────────────────────────────
+// قسم الهدف الأكاديمي والاهتمامات البحثية (Objective)
+// ─────────────────────────────────────────────
+
+model ObjectiveSection {
+  id             Int      @id @default(1)
+  heading        String   @default("الهدف الأكاديمي")
+  paragraph1     String   @db.Text
+  paragraph2     String   @db.Text
+  interestsTitle String   @default("الاهتمامات البحثية")
+  visible        Boolean  @default(true)
+  updatedAt      DateTime @updatedAt
+
+  interests ResearchInterest[]
+}
+
+model ResearchInterest {
+  id        Int              @id @default(autoincrement())
+  sectionId Int
+  section   ObjectiveSection @relation(fields: [sectionId], references: [id], onDelete: Cascade)
+  name      String
+  order     Int              @default(0)
+}
+
+// ─────────────────────────────────────────────
+// قسم التواصل (Contact)
+// ─────────────────────────────────────────────
+
+model ContactSection {
+  id        Int      @id @default(1)
+  title     String
+  subtitle  String?
+  bgImage   String?
+  metaLine  String // الجنسية: سورية / تركية · الإقامة: سوريا...
+  visible   Boolean  @default(true)
+  updatedAt DateTime @updatedAt
+
+  cards ContactCard[]
+}
+
+model ContactCard {
+  id        Int            @id @default(autoincrement())
+  sectionId Int
+  section   ContactSection @relation(fields: [sectionId], references: [id], onDelete: Cascade)
+  title     String // عنوان البطاقة: الهاتف التركي (واتساب)
+  value     String // الرقم أو البريد
+  href      String // رابط واتساب / اتصال / بريد
+  action    String // نص الرابط: مراسلة عبر واتساب
+  icon      String         @db.Text // مسار SVG (خاصية d)
+  order     Int            @default(0)
+}
