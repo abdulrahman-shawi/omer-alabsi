@@ -18,6 +18,7 @@ import {
   setAt,
   useSave,
 } from "@/components/admin/ui";
+import ImageField from "@/components/admin/image-field";
 
 export default function ContactForm({ initial }: { initial: ContactPayload }) {
   const [title, setTitle] = useState(initial.title);
@@ -44,10 +45,9 @@ export default function ContactForm({ initial }: { initial: ContactPayload }) {
           <Text label="الوصف المختصر" value={subtitle} onChange={setSubtitle} />
         </div>
         <div className="grid md:grid-cols-2 gap-4">
-          <Text
+          <ImageField
             label="صورة الخلفية"
             value={bgImage}
-            dir="ltr"
             onChange={setBgImage}
           />
           <Text

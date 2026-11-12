@@ -18,6 +18,7 @@ import {
   setAt,
   useSave,
 } from "@/components/admin/ui";
+import ImageField from "@/components/admin/image-field";
 
 export default function ExperienceForm({
   initial,
@@ -66,10 +67,9 @@ export default function ExperienceForm({
           <Text label="العنوان" value={title} onChange={setTitle} />
           <Text label="الوصف المختصر" value={subtitle} onChange={setSubtitle} />
         </div>
-        <Text
+        <ImageField
           label="صورة الخلفية"
           value={bgImage}
-          dir="ltr"
           onChange={setBgImage}
         />
         <Toggle

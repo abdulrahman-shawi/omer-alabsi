@@ -31,7 +31,7 @@ export function useSave() {
   return { status, error, run };
 }
 
-const inputCls =
+export const inputCls =
   "w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-slate-100 placeholder:text-slate-600 focus:border-sky-500 focus:outline-none transition-colors";
 
 export function Field({ label, children }: { label: string; children: ReactNode }) {

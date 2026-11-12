@@ -16,6 +16,7 @@ import {
   setAt,
   useSave,
 } from "@/components/admin/ui";
+import ImageField from "@/components/admin/image-field";
 
 export default function HeroForm({ initial }: { initial: HeroPayload }) {
   const [greeting, setGreeting] = useState(initial.greeting);
@@ -70,11 +71,10 @@ export default function HeroForm({ initial }: { initial: HeroPayload }) {
             value={avatarLetter}
             onChange={setAvatarLetter}
           />
-          <Text
+          <ImageField
             label="صورة الخلفية"
             value={bgImage}
             onChange={setBgImage}
-            dir="ltr"
           />
         </div>
         <Toggle

@@ -17,6 +17,7 @@ import {
   setAt,
   useSave,
 } from "@/components/admin/ui";
+import ImageField from "@/components/admin/image-field";
 
 export default function GalleryForm({ initial }: { initial: GalleryPayload }) {
   const [title, setTitle] = useState(initial.title);
@@ -64,10 +65,9 @@ export default function GalleryForm({ initial }: { initial: GalleryPayload }) {
               onRemove={() => setPhotos(photos.filter((_, j) => j !== i))}
             >
               <div className="grid md:grid-cols-3 gap-3">
-                <Text
+                <ImageField
                   label="المسار أو الرابط"
                   value={p.src}
-                  dir="ltr"
                   onChange={(v) => setPhotos(setAt(photos, i, { src: v }))}
                 />
                 <Text
