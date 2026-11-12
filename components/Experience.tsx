@@ -1,48 +1,56 @@
 import Section from "./Section";
+import type { ExperienceData } from "@/lib/site-data";
 
-const academicExperience = {
-  role: "مدرس",
-  field: "التعليم والتدريب المخبري",
-  place: "جامعة حمص – سوريا",
-  description:
-    "المساهمة في العملية التعليمية والتدريب العملي ضمن البيئة الجامعية، من خلال العمل في المختبر وتطبيق المفاهيم العلمية بصورة عملية، ومتابعة الطلاب وتقديم الإرشاد والتوضيح أثناء الأنشطة المخبرية.",
-  note: "تجربة مباشرة في التعامل مع الطلاب والعملية التعليمية الجامعية والجانب التطبيقي للمادة العلمية.",
+const fallback: ExperienceData = {
+  visible: true,
+  title: "الخبرة الأكاديمية والتدريبية",
+  subtitle: "مسيرتي المهنية",
+  bgImage: "/experience-bg.jpg",
+  academic: {
+    role: "مدرس",
+    field: "التعليم والتدريب المخبري",
+    place: "جامعة حمص – سوريا",
+    description:
+      "المساهمة في العملية التعليمية والتدريب العملي ضمن البيئة الجامعية، من خلال العمل في المختبر وتطبيق المفاهيم العلمية بصورة عملية، ومتابعة الطلاب وتقديم الإرشاد والتوضيح أثناء الأنشطة المخبرية.",
+    note: "تجربة مباشرة في التعامل مع الطلاب والعملية التعليمية الجامعية والجانب التطبيقي للمادة العلمية.",
+  },
+  training: [
+    {
+      role: "مدرب ريادة أعمال وإدارة المشاريع الصغيرة والمتوسطة",
+      place: "برامج ومشاريع بالتعاون مع منظمات دولية",
+      description:
+        "تقديم التدريب في مجالات ريادة الأعمال وإدارة المشاريع الصغيرة والمتوسطة، بما يشمل تطوير الأفكار والمشاريع، التخطيط، الإدارة، دراسة الاحتياجات، وتنمية القدرات اللازمة لتأسيس وإدارة المشاريع.",
+    },
+    {
+      role: "مدرب سبل العيش وإدارة المشاريع الصغيرة والمتوسطة",
+      place: "مجموعة الإدارة العالمية (GM) بالتعاون مع IOM",
+      description:
+        "مدرب معتمد بشهادة تدريب في مجال إدارة المشاريع الصغيرة والمتوسطة وبرامج سبل العيش، والمشاركة في أنشطة التدريب وبناء القدرات ضمن البرامج الموجهة للمستفيدين.",
+    },
+    {
+      role: "مدرب تنمية ومهارات حياتية",
+      place: "ورشات عمل وتدريبات متخصصة",
+      description:
+        "تقديم تدريبات وورشات عمل في مجالات التنمية البشرية والمهارات الحياتية، مع التركيز على تطوير القدرات الشخصية والمهنية، ومهارات التواصل، حل المشكلات، القيادة، والعمل ضمن الفريق.",
+    },
+  ],
+  organizations: [
+    { abbr: "IOM", name: "المنظمة الدولية للهجرة" },
+    { abbr: "UNDP", name: "برنامج الأمم المتحدة الإنمائي" },
+    { abbr: "UNHCR", name: "المفوضية السامية للأمم المتحدة لشؤون اللاجئين" },
+  ],
 };
 
-const trainingExperience = [
-  {
-    role: "مدرب ريادة أعمال وإدارة المشاريع الصغيرة والمتوسطة",
-    place: "برامج ومشاريع بالتعاون مع منظمات دولية",
-    description:
-      "تقديم التدريب في مجالات ريادة الأعمال وإدارة المشاريع الصغيرة والمتوسطة، بما يشمل تطوير الأفكار والمشاريع، التخطيط، الإدارة، دراسة الاحتياجات، وتنمية القدرات اللازمة لتأسيس وإدارة المشاريع.",
-  },
-  {
-    role: "مدرب سبل العيش وإدارة المشاريع الصغيرة والمتوسطة",
-    place: "مجموعة الإدارة العالمية (GM) بالتعاون مع IOM",
-    description:
-      "مدرب معتمد بشهادة تدريب في مجال إدارة المشاريع الصغيرة والمتوسطة وبرامج سبل العيش، والمشاركة في أنشطة التدريب وبناء القدرات ضمن البرامج الموجهة للمستفيدين.",
-  },
-  {
-    role: "مدرب تنمية ومهارات حياتية",
-    place: "ورشات عمل وتدريبات متخصصة",
-    description:
-      "تقديم تدريبات وورشات عمل في مجالات التنمية البشرية والمهارات الحياتية، مع التركيز على تطوير القدرات الشخصية والمهنية، ومهارات التواصل، حل المشكلات، القيادة، والعمل ضمن الفريق.",
-  },
-];
+export default function Experience({ data }: { data?: ExperienceData }) {
+  const { title, subtitle, bgImage, academic, training, organizations } =
+    data ?? fallback;
 
-const organizations = [
-  { abbr: "IOM", name: "المنظمة الدولية للهجرة" },
-  { abbr: "UNDP", name: "برنامج الأمم المتحدة الإنمائي" },
-  { abbr: "UNHCR", name: "المفوضية السامية للأمم المتحدة لشؤون اللاجئين" },
-];
-
-export default function Experience() {
   return (
     <Section
       id="experience"
-      title="الخبرة الأكاديمية والتدريبية"
-      subtitle="مسيرتي المهنية"
-      bgImage="/experience-bg.jpg"
+      title={title}
+      subtitle={subtitle || undefined}
+      bgImage={bgImage || undefined}
     >
       {/* الخبرة الأكاديمية */}
       <div className="mb-14">
@@ -67,17 +75,17 @@ export default function Experience() {
 
         <div className="bg-slate-900/80 backdrop-blur-sm border border-sky-500/30 rounded-2xl p-6 md:p-8">
           <div className="flex flex-wrap items-center gap-3 mb-3">
-            <h4 className="text-2xl font-bold text-white">{academicExperience.role}</h4>
+            <h4 className="text-2xl font-bold text-white">{academic.role}</h4>
             <span className="px-3 py-1 rounded-full bg-sky-500/10 border border-sky-500/40 text-sky-400 text-xs font-medium">
-              {academicExperience.field}
+              {academic.field}
             </span>
           </div>
-          <p className="text-sky-300 font-medium mb-4">{academicExperience.place}</p>
+          <p className="text-sky-300 font-medium mb-4">{academic.place}</p>
           <p className="text-slate-400 leading-loose mb-4">
-            {academicExperience.description}
+            {academic.description}
           </p>
           <p className="text-slate-500 text-sm border-r-2 border-sky-500 pr-4 leading-relaxed">
-            {academicExperience.note}
+            {academic.note}
           </p>
         </div>
       </div>
@@ -104,7 +112,7 @@ export default function Experience() {
         </h3>
 
         <div className="grid md:grid-cols-3 gap-5 mb-10">
-          {trainingExperience.map((item) => (
+          {training.map((item) => (
             <div
               key={item.role}
               className="bg-slate-900/70 backdrop-blur-sm border border-slate-800 rounded-2xl p-6 hover:border-indigo-500/60 transition-colors flex flex-col"

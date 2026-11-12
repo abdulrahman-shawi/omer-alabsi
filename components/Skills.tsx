@@ -1,54 +1,60 @@
 import Section from "./Section";
+import type { SkillsData } from "@/lib/site-data";
 
-const skillGroups = [
-  {
-    title: "أكاديمية وبحثية",
-    color: "sky",
-    skills: [
-      "البحث العلمي",
-      "إعداد الدراسات",
-      "التحليل العلمي",
-      "تحليل البيانات والنتائج",
-      "إعداد وتقديم المحاضرات",
-      "التدريب العملي والمخبري",
-      "إعداد المحتوى التعليمي",
-    ],
-  },
-  {
-    title: "إدارية",
-    color: "indigo",
-    skills: [
-      "الإدارة الاستراتيجية",
-      "إدارة المشاريع",
-      "التخطيط والتنظيم",
-      "تطوير الأعمال",
-      "إدارة العمليات",
-      "إدارة الفرق",
-      "صناعة القرار",
-      "تطوير الأداء المؤسسي",
-      "ريادة الأعمال",
-      "إدارة المشاريع الصغيرة والمتوسطة",
-    ],
-  },
-  {
-    title: "تقنية",
-    color: "emerald",
-    skills: [
-      "Microsoft Office",
-      "Excel",
-      "أنظمة CRM",
-      "أنظمة ERP",
-      "أدوات الذكاء الاصطناعي",
-      "الأدوات الرقمية للإدارة والتحليل",
-    ],
-  },
-];
-
-const languages = [
-  { name: "العربية", code: null, level: "ممتاز", percent: 100 },
-  { name: "التركية", code: "C1", level: "ممتاز", percent: 88 },
-  { name: "الإنجليزية", code: "B1", level: "متوسط", percent: 55 },
-];
+const fallback: SkillsData = {
+  visible: true,
+  title: "المهارات واللغات",
+  subtitle: "ماذا أستطيع أن أقدم؟",
+  languagesTitle: "اللغات",
+  groups: [
+    {
+      title: "أكاديمية وبحثية",
+      color: "sky",
+      skills: [
+        "البحث العلمي",
+        "إعداد الدراسات",
+        "التحليل العلمي",
+        "تحليل البيانات والنتائج",
+        "إعداد وتقديم المحاضرات",
+        "التدريب العملي والمخبري",
+        "إعداد المحتوى التعليمي",
+      ],
+    },
+    {
+      title: "إدارية",
+      color: "indigo",
+      skills: [
+        "الإدارة الاستراتيجية",
+        "إدارة المشاريع",
+        "التخطيط والتنظيم",
+        "تطوير الأعمال",
+        "إدارة العمليات",
+        "إدارة الفرق",
+        "صناعة القرار",
+        "تطوير الأداء المؤسسي",
+        "ريادة الأعمال",
+        "إدارة المشاريع الصغيرة والمتوسطة",
+      ],
+    },
+    {
+      title: "تقنية",
+      color: "emerald",
+      skills: [
+        "Microsoft Office",
+        "Excel",
+        "أنظمة CRM",
+        "أنظمة ERP",
+        "أدوات الذكاء الاصطناعي",
+        "الأدوات الرقمية للإدارة والتحليل",
+      ],
+    },
+  ],
+  languages: [
+    { name: "العربية", code: "", level: "ممتاز", percent: 100 },
+    { name: "التركية", code: "C1", level: "ممتاز", percent: 88 },
+    { name: "الإنجليزية", code: "B1", level: "متوسط", percent: 55 },
+  ],
+};
 
 const colorStyles: Record<string, { border: string; title: string; chip: string }> = {
   sky: {
@@ -68,13 +74,15 @@ const colorStyles: Record<string, { border: string; title: string; chip: string 
   },
 };
 
-export default function Skills() {
+export default function Skills({ data }: { data?: SkillsData }) {
+  const { title, subtitle, languagesTitle, groups, languages } = data ?? fallback;
+
   return (
-    <Section id="skills" title="المهارات واللغات" subtitle="ماذا أستطيع أن أقدم؟">
+    <Section id="skills" title={title} subtitle={subtitle || undefined}>
       {/* المهارات */}
       <div className="grid md:grid-cols-3 gap-6 mb-14">
-        {skillGroups.map((group) => {
-          const styles = colorStyles[group.color];
+        {groups.map((group) => {
+          const styles = colorStyles[group.color] ?? colorStyles.sky;
           return (
             <div
               key={group.title}
@@ -100,7 +108,7 @@ export default function Skills() {
 
       {/* اللغات */}
       <div className="bg-slate-900/60 border border-slate-800 rounded-2xl p-6 md:p-8">
-        <h3 className="font-bold text-lg text-white mb-6">اللغات</h3>
+        <h3 className="font-bold text-lg text-white mb-6">{languagesTitle}</h3>
         <div className="grid md:grid-cols-3 gap-6">
           {languages.map((lang) => (
             <div key={lang.name}>

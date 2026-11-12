@@ -1,69 +1,86 @@
 import Section from "./Section";
+import type { CertificationsData } from "@/lib/site-data";
 
-const qualityStandards = [
-  { code: "ISO 9001:2015", name: "نظام إدارة الجودة" },
-  { code: "ISO 9001:2008", name: "نظام إدارة الجودة" },
-  { code: "GMP", name: "ممارسات التصنيع الجيد" },
-  { code: "ISO 22000", name: "نظام إدارة سلامة الغذاء" },
-  { code: "ISO/IEC 17025:2005", name: "المتطلبات العامة لكفاءة مختبرات الفحص والمعايرة" },
-];
+const fallback: CertificationsData = {
+  visible: true,
+  title: "الشهادات والمعايير الدولية",
+  subtitle: "مؤهلاتي في الجودة والإدارة",
+  standardsTitle: "أنظمة إدارة الجودة والمعايير الدولية",
+  standardsIntro:
+    "معرفة بمبادئ أنظمة الجودة، توثيق العمليات، ضبط الإجراءات، إدارة المخاطر، والتحسين المستمر للأداء المؤسسي والمخبري.",
+  certGroupsTitle: "الشهادات المهنية في الإدارة",
+  programsTitle: "برامج التنمية البشرية وورشات العمل",
+  programsIntro:
+    "المشاركة في دورات وورشات عمل متخصصة عبر جهات ومبادرات متعددة:",
+  standards: [
+    { code: "ISO 9001:2015", name: "نظام إدارة الجودة" },
+    { code: "ISO 9001:2008", name: "نظام إدارة الجودة" },
+    { code: "GMP", name: "ممارسات التصنيع الجيد" },
+    { code: "ISO 22000", name: "نظام إدارة سلامة الغذاء" },
+    { code: "ISO/IEC 17025:2005", name: "المتطلبات العامة لكفاءة مختبرات الفحص والمعايرة" },
+  ],
+  certGroups: [
+    {
+      field: "إدارة المشاريع",
+      items: [
+        "شهادة في إدارة المشاريع – جامعة حمص",
+        "شهادة في إدارة المشاريع كمهارة حياتية – منصة إدراك",
+        "دورة كتابة مقترح مشروع – لجنة العمل التطوعي / جمعية البر",
+      ],
+    },
+    {
+      field: "إدارة الموارد البشرية",
+      items: [
+        "شهادة في إدارة الموارد البشرية – أ. عمار العموري",
+        "شهادة في إدارة الموارد البشرية – منصة إدراك",
+        "دورة في إدارة الموارد البشرية – أ. أحمد نبيل فرحات",
+      ],
+    },
+    {
+      field: "إدارة الاجتماعات",
+      items: ["شهادة في إدارة الاجتماعات – جامعة حمص – 2015"],
+    },
+    {
+      field: "مهارات القيادة",
+      items: [
+        "دورة متخصصة في مهارات القيادة والتطوير القيادي بإشراف محمد السيد، خبير دولي في الموارد البشرية والتدريب القيادي",
+      ],
+    },
+  ],
+  programs: [
+    "المجالس الدنماركية",
+    "جمعية البر والخدمات الاجتماعية",
+    "مركز السائر",
+    "فريق سند التنموي – دمشق",
+    "برامج تدريبية عبر الإنترنت",
+  ],
+};
 
-const professionalCerts = [
-  {
-    field: "إدارة المشاريع",
-    items: [
-      "شهادة في إدارة المشاريع – جامعة حمص",
-      "شهادة في إدارة المشاريع كمهارة حياتية – منصة إدراك",
-      "دورة كتابة مقترح مشروع – لجنة العمل التطوعي / جمعية البر",
-    ],
-  },
-  {
-    field: "إدارة الموارد البشرية",
-    items: [
-      "شهادة في إدارة الموارد البشرية – أ. عمار العموري",
-      "شهادة في إدارة الموارد البشرية – منصة إدراك",
-      "دورة في إدارة الموارد البشرية – أ. أحمد نبيل فرحات",
-    ],
-  },
-  {
-    field: "إدارة الاجتماعات",
-    items: ["شهادة في إدارة الاجتماعات – جامعة حمص – 2015"],
-  },
-  {
-    field: "مهارات القيادة",
-    items: [
-      "دورة متخصصة في مهارات القيادة والتطوير القيادي بإشراف محمد السيد، خبير دولي في الموارد البشرية والتدريب القيادي",
-    ],
-  },
-];
+export default function Certifications({ data }: { data?: CertificationsData }) {
+  const {
+    title,
+    subtitle,
+    standardsTitle,
+    standardsIntro,
+    certGroupsTitle,
+    programsTitle,
+    programsIntro,
+    standards,
+    certGroups,
+    programs,
+  } = data ?? fallback;
 
-const developmentPrograms = [
-  "المجالس الدنماركية",
-  "جمعية البر والخدمات الاجتماعية",
-  "مركز السائر",
-  "فريق سند التنموي – دمشق",
-  "برامج تدريبية عبر الإنترنت",
-];
-
-export default function Certifications() {
   return (
-    <Section
-      id="certifications"
-      title="الشهادات والمعايير الدولية"
-      subtitle="مؤهلاتي في الجودة والإدارة"
-    >
+    <Section id="certifications" title={title} subtitle={subtitle || undefined}>
       {/* أنظمة الجودة */}
       <div className="mb-14">
-        <h3 className="text-xl font-bold text-white mb-3">
-          أنظمة إدارة الجودة والمعايير الدولية
-        </h3>
+        <h3 className="text-xl font-bold text-white mb-3">{standardsTitle}</h3>
         <p className="text-slate-400 text-sm mb-6 leading-relaxed">
-          معرفة بمبادئ أنظمة الجودة، توثيق العمليات، ضبط الإجراءات، إدارة
-          المخاطر، والتحسين المستمر للأداء المؤسسي والمخبري.
+          {standardsIntro}
         </p>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {qualityStandards.map((standard) => (
+          {standards.map((standard) => (
             <div
               key={standard.code}
               className="flex items-center gap-4 bg-slate-900/60 border border-slate-800 rounded-xl p-5 hover:border-emerald-500/60 transition-colors"
@@ -81,12 +98,10 @@ export default function Certifications() {
 
       {/* الشهادات المهنية */}
       <div className="mb-12">
-        <h3 className="text-xl font-bold text-white mb-6">
-          الشهادات المهنية في الإدارة
-        </h3>
+        <h3 className="text-xl font-bold text-white mb-6">{certGroupsTitle}</h3>
 
         <div className="grid md:grid-cols-2 gap-5">
-          {professionalCerts.map((cert) => (
+          {certGroups.map((cert) => (
             <div
               key={cert.field}
               className="bg-slate-900/60 border border-slate-800 rounded-2xl p-6 hover:border-sky-500/60 transition-colors"
@@ -107,14 +122,10 @@ export default function Certifications() {
 
       {/* برامج التنمية البشرية */}
       <div>
-        <h3 className="text-xl font-bold text-white mb-6">
-          برامج التنمية البشرية وورشات العمل
-        </h3>
-        <p className="text-slate-400 text-sm mb-5">
-          المشاركة في دورات وورشات عمل متخصصة عبر جهات ومبادرات متعددة:
-        </p>
+        <h3 className="text-xl font-bold text-white mb-6">{programsTitle}</h3>
+        <p className="text-slate-400 text-sm mb-5">{programsIntro}</p>
         <div className="flex flex-wrap gap-3">
-          {developmentPrograms.map((program) => (
+          {programs.map((program) => (
             <span
               key={program}
               className="px-4 py-2 rounded-full bg-slate-800/60 border border-slate-700 text-slate-300 text-sm hover:border-amber-500/60 hover:text-amber-300 transition-colors"

@@ -1,8 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import type { NavLinkItem } from "@/lib/site-data";
 
-const links = [
+const fallbackLinks: NavLinkItem[] = [
   { href: "#home", label: "الرئيسية" },
   { href: "#about", label: "نبذة" },
   { href: "#education", label: "المؤهلات" },
@@ -14,9 +15,21 @@ const links = [
   { href: "#contact", label: "تواصل" },
 ];
 
-export default function Navbar() {
+export default function Navbar({
+  brand,
+  links,
+}: {
+  brand?: string;
+  links?: NavLinkItem[];
+}) {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+
+  const navLinks = links && links.length > 0 ? links : fallbackLinks;
+  // اسم العلامة: الكلمة الأولى بيضاء والثانية بلون مميز (مطابق للتصميم الأصلي)
+  const brandWords = (brand ?? "عمر العبسي").split(" ");
+  const brandFirst = brandWords[0] ?? "";
+  const brandRest = brandWords.slice(1).join(" ");
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -35,12 +48,13 @@ export default function Navbar() {
     >
       <nav className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
         <a href="#home" className="text-xl font-bold text-white">
-          عمر <span className="text-sky-400">العبسي</span>
+          {brandFirst}{" "}
+          {brandRest && <span className="text-sky-400">{brandRest}</span>}
         </a>
 
         {/* روابط سطح المكتب */}
         <ul className="hidden md:flex items-center gap-6">
-          {links.map((link) => (
+          {navLinks.map((link) => (
             <li key={link.href}>
               <a
                 href={link.href}
@@ -85,7 +99,7 @@ export default function Navbar() {
       {/* قائمة الجوال */}
       {open && (
         <ul className="md:hidden bg-slate-950/95 backdrop-blur-md border-b border-slate-800 px-6 py-4 flex flex-col gap-4">
-          {links.map((link) => (
+          {navLinks.map((link) => (
             <li key={link.href}>
               <a
                 href={link.href}

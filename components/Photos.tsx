@@ -1,21 +1,26 @@
 import Section from "./Section";
+import type { GalleryData } from "@/lib/site-data";
 
-const photos = [
-  { src: "/gallery/activity-1.jpg", title: "ورشة عمل تدريبية", category: "بناء القدرات" },
-  { src: "/gallery/activity-2.jpg", title: "عمل تطوعي مجتمعي", category: "الخدمات الاجتماعية" },
-  { src: "/gallery/activity-3.jpg", title: "تدريب ريادة الأعمال", category: "سبل العيش" },
-  { src: "/gallery/activity-4.jpg", title: "لقاء تنموي شبابي", category: "المهارات الحياتية" },
-  { src: "/gallery/activity-5.jpg", title: "محاضرة وورشة علمية", category: "البيئة الجامعية" },
-  { src: "/gallery/activity-6.jpg", title: "مشاركة في مؤتمر", category: "برامج مجتمعية" },
-];
+const fallback: GalleryData = {
+  visible: true,
+  title: "معرض الصور",
+  subtitle: "لقطات من الورشات والبرامج التدريبية والعمل المجتمعي",
+  note: "* صور توضيحية — يمكن استبدالها بالصور الحقيقية من الأنشطة",
+  photos: [
+    { src: "/gallery/activity-1.jpg", title: "ورشة عمل تدريبية", category: "بناء القدرات" },
+    { src: "/gallery/activity-2.jpg", title: "عمل تطوعي مجتمعي", category: "الخدمات الاجتماعية" },
+    { src: "/gallery/activity-3.jpg", title: "تدريب ريادة الأعمال", category: "سبل العيش" },
+    { src: "/gallery/activity-4.jpg", title: "لقاء تنموي شبابي", category: "المهارات الحياتية" },
+    { src: "/gallery/activity-5.jpg", title: "محاضرة وورشة علمية", category: "البيئة الجامعية" },
+    { src: "/gallery/activity-6.jpg", title: "مشاركة في مؤتمر", category: "برامج مجتمعية" },
+  ],
+};
 
-export default function Photos() {
+export default function Photos({ data }: { data?: GalleryData }) {
+  const { title, subtitle, note, photos } = data ?? fallback;
+
   return (
-    <Section
-      id="photos"
-      title="معرض الصور"
-      subtitle="لقطات من الورشات والبرامج التدريبية والعمل المجتمعي"
-    >
+    <Section id="photos" title={title} subtitle={subtitle || undefined}>
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
         {photos.map((photo) => (
           <figure
@@ -30,9 +35,11 @@ export default function Photos() {
             />
 
             <figcaption className="absolute inset-0 flex flex-col justify-end p-5 bg-gradient-to-t from-slate-950/95 via-slate-950/30 to-transparent">
-              <span className="text-sky-400 text-xs font-medium mb-1">
-                {photo.category}
-              </span>
+              {photo.category && (
+                <span className="text-sky-400 text-xs font-medium mb-1">
+                  {photo.category}
+                </span>
+              )}
               <span className="text-white font-bold text-lg">{photo.title}</span>
             </figcaption>
 
@@ -41,9 +48,7 @@ export default function Photos() {
         ))}
       </div>
 
-      <p className="text-center text-slate-600 text-sm mt-8">
-        * صور توضيحية — يمكن استبدالها بالصور الحقيقية من الأنشطة
-      </p>
+      {note && <p className="text-center text-slate-600 text-sm mt-8">{note}</p>}
     </Section>
   );
 }
